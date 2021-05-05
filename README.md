@@ -22,4 +22,4 @@ WALKMAN_MUSIC_PATH=/MUSIC/Music/
 $ ./main.go
 ```
 
-### WALKMANディレクトに新たに保存される
+### walkmanディレクトに新たに保存される

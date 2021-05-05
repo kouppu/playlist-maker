@@ -14,7 +14,12 @@ import (
 )
 
 // 環境変数
-var envs = map[string]string{"SRC_DIR_PATH": "", "DEST_DIR_PATH": "", "ITUNES_MUSIC_PATH": "", "WALKMAN_MUSIC_PATH": ""}
+var envs = map[string]string{"ITUNES_MUSIC_PATH": "", "WALKMAN_MUSIC_PATH": ""}
+
+const (
+	SRC_DIR_PATH  string = "./iTunes/"
+	DEST_DIR_PATH string = "./walkman/"
+)
 
 func main() {
 	fmt.Println("createing...")
@@ -24,7 +29,7 @@ func main() {
 		panic(err)
 	}
 
-	files, _ := filepath.Glob(envs["SRC_DIR_PATH"] + "*.m3u")
+	files, _ := filepath.Glob(SRC_DIR_PATH + "*.m3u")
 	if len(files) == 0 {
 		fmt.Println("not found")
 		os.Exit(0)
@@ -67,7 +72,7 @@ func createPlayList(srcPath string) error {
 	}
 	defer srcFile.Close()
 
-	destFile, err := os.Create(envs["DEST_DIR_PATH"] + filepath.Base(srcPath))
+	destFile, err := os.Create(DEST_DIR_PATH + filepath.Base(srcPath))
 	if err != nil {
 		return fmt.Errorf("error: %w", err)
 	}
